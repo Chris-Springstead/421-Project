@@ -48,7 +48,7 @@ class TwitterClient():
 	
     def get_hastag(self, num_tweets):
         hashtag = []
-        for tweet in Cursor(self.twitter_client.search, q="#science", lang="en", since="2020-04-16").items(num_tweets):
+        for tweet in Cursor(self.twitter_client.search, q="#extrovert", lang="en", since="2020-04-16").items(num_tweets):
             #print(tweet.text)
             hashtag.append(tweet)
         return hashtag
@@ -145,11 +145,11 @@ if __name__ == '__main__':
     #print(tweets[0].retweet_count)
 
     df = tweet_analyzer.tweets_to_data_frame(tweets)
-    df['label'] = 4
+    df['label'] = 5
 
     # Outputting data frame
     print("printing to file")
-    out_filename = "#science.csv"
+    out_filename = "#extrovert.csv"
     df.to_csv(out_filename, encoding='utf-8', index=False) # Commented just to make testing faster, undo later
 
     # # Get average length over all tweets:

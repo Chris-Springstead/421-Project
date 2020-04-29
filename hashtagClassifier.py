@@ -6,11 +6,12 @@ import math
 import operator
 
 class Labels(IntEnum):
-	news = 0
-	politics = 1
-	medicine = 2
-	technology = 3
-	science = 4
+	sad = 0
+	happy = 1
+	shy = 2
+	social = 3
+	introvert = 4
+	extrovert = 5
 
 class hashtagClasifier:
 	def __init__(self):
@@ -185,6 +186,7 @@ def driver(query):
 
 def main():
 	tweets = loadTweets("HashtagTweets")
+	print(len(tweets))
 	trainTweets = {}
 	testTweets = {}
 	#print(tweets)

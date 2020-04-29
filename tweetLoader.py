@@ -23,7 +23,7 @@ def __repr__(self):
 tweetDictionary = {}
 
 def loadTweets(subFile):
-    for folder in glob.glob("TweetsFolder/"+subFile+"/"):
+    for folder in glob.glob("TweetsFolder/"):
         for file in glob.glob(folder + "*.csv"):
             with open(file , encoding='cp437') as csvfile:
                 readCSV = csv.reader(csvfile, delimiter=',')
