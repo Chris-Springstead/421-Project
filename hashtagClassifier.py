@@ -81,18 +81,21 @@ def evaluate(model, tweets):
 	l2Got = 0
 	l3Got = 0
 	l4Got = 0
+	l5Got = 0
 	
 	l0Right = 0
 	l1Right = 0
 	l2Right = 0
 	l3Right = 0
 	l4Right = 0
+	l5Right = 0
 
 	l0Relevant = 0
 	l1Relevant = 0
 	l2Relevant = 0
 	l3Relevant = 0
 	l4Relevant = 0
+	l5Relevant = 0
 	for tweet in tweets:
 		#print(model.predict(tweets[tweet].tString))
 
@@ -125,6 +128,10 @@ def evaluate(model, tweets):
 			l4Got += 1
 			if predictedLabel == Labels(int(tweets[tweet].label)):
 				l4Right += 1
+		elif predictedLabel == Labels(5):
+			l5Got += 1
+			if predictedLabel == Labels(int(tweets[tweet].label)):
+				l5Right += 1
 
 		#recall = TP / (TP + FN)
 
@@ -133,6 +140,7 @@ def evaluate(model, tweets):
 		l2Relevant = l2Got - l2Right
 		l3Relevant = l3Got - l3Right
 		l4Relevant = l4Got - l4Right
+		l5Relevant = l5Got - l5Right
 	
 	#print(str(l0Got) + " " + str(l0Right) + " " + str(l0Relevant))
 
@@ -174,6 +182,13 @@ def evaluate(model, tweets):
 	print(str(Labels(4)) + " Precision: ", l4precision)
 	print(str(Labels(4)) + " Recall: ", l4recall)
 	print(str(Labels(4)) + " F1: ", l4F1, '\n')
+
+	l5precision = l5Right / (l5Right + l5Got)
+	l5recall = l5Right / (l5Right + l5Relevant)
+	l5F1 = 2 / ((1/l5precision) + (1/l5recall))
+	print(str(Labels(5)) + " Precision: ", l5precision)
+	print(str(Labels(5)) + " Recall: ", l5recall)
+	print(str(Labels(5)) + " F1: ", l5F1, '\n')
 
 def driver(query):
 	trainDict = loadTweets("HashtagTweets")
